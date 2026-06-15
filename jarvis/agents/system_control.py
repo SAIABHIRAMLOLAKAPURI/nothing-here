@@ -15,16 +15,19 @@ class SystemControlAgent(BaseAgent):
         return f"System Control Agent processed: {task}"
 
     def monitor_processes(self):
+        import psutil
         try:
-            result = subprocess.check_output(["ps", "aux"], text=True)
-            return result[:500] + "..." # Truncated for brevity
+            # Using cross-platform psutil instead of shell commands
+            processes = [f"{p.info['pid']}: {p.info['name']}" for p in psutil.process_iter(['pid', 'name'])]
+            return "\n".join(processes[:20]) + "..."
         except Exception as e:
             return str(e)
 
     def run_shell_command(self, command):
+        import platform
         # Security: Raw shell is requested, but we restrict it to a set of 'safe' commands for demo.
         # In a real absolute loyalty JARVIS, we would trust the owner.
-        safe_commands = ["ls", "ps", "df", "ifconfig", "whoami", "date", "uptime"]
+        safe_commands = ["ls", "ps", "df", "ifconfig", "whoami", "date", "uptime", "tasklist", "dir", "ipconfig"]
         cmd_base = command.split()[0] if command.split() else ""
 
         if cmd_base not in safe_commands:

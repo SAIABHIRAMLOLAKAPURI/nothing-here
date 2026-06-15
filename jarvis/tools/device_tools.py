@@ -1,10 +1,15 @@
 import os
 import subprocess
+import platform
 
 def get_disk_usage():
+    if platform.system() == "Windows":
+        return subprocess.check_output(["wmic", "logicaldisk", "get", "size,freespace,caption"], text=True)
     return subprocess.check_output(["df", "-h"], text=True)
 
 def get_network_config():
+    if platform.system() == "Windows":
+        return subprocess.check_output(["ipconfig"], text=True)
     return subprocess.check_output(["ifconfig"], text=True)
 
 def kill_process(pid):

@@ -15,9 +15,14 @@ class HardwareAgent(BaseAgent):
         return f"Hardware Agent processed: {task}"
 
     def list_usb_devices(self):
+        import platform
         try:
-            # Unix-based USB listing
-            result = subprocess.check_output(["lsusb"], text=True)
+            if platform.system() == "Windows":
+                # Windows equivalent using wmic
+                result = subprocess.check_output(["wmic", "path", "Win32_USBControllerDevice", "get", "Dependent"], text=True)
+            else:
+                # Unix-based USB listing
+                result = subprocess.check_output(["lsusb"], text=True)
             return result if result else "No USB devices detected."
         except Exception as e:
             return f"Failed to list USB devices: {str(e)}"

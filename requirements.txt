@@ -5,3 +5,7 @@ beautifulsoup4
 requests
 pytest
 playwright
+pandas
+scikit-learn
+joblib
+pyinstaller

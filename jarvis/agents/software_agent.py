@@ -18,9 +18,14 @@ class SoftwareAgent(BaseAgent):
         return f"Software Agent processed: {task}"
 
     def list_installed_software(self):
+        import platform
         try:
-            # Example for debian-based systems
-            result = subprocess.check_output(["dpkg", "--get-selections"], text=True)
+            if platform.system() == "Windows":
+                # Windows equivalent using wmic
+                result = subprocess.check_output(["wmic", "product", "get", "name"], text=True)
+            else:
+                # Example for debian-based systems
+                result = subprocess.check_output(["dpkg", "--get-selections"], text=True)
             return result[:500] + "..." # Truncated
         except Exception:
             return "Failed to list installed software. System not supported."
