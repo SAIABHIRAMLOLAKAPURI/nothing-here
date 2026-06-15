@@ -33,6 +33,16 @@ class SecurityAgent(BaseAgent):
         input_lower = task.lower()
         if "audit" in input_lower or "check ports" in input_lower:
             return "Security Audit: All common local ports appear secured. Recommendations: Rotate SSH keys."
+        elif "firewall" in input_lower:
+            return self.manage_firewall(task)
+        elif "stop breach" in input_lower or "defend" in input_lower:
+            return "Security Agent: Breach defense mode activated. Monitoring for anomalous traffic. All ingress filtered."
         elif "hack" in input_lower:
             return "Security Agent: I can perform local system auditing and security research. I cannot perform unauthorized hacking or exploit generation."
         return f"Security Agent processed: {task}"
+
+    def manage_firewall(self, task):
+        # Simulated firewall management logic
+        if "build" in task.lower() or "start" in task.lower():
+            return "Firewall built and enabled. Ruleset: Default-Deny. Essential ports open."
+        return "Firewall status: ACTIVE. Rules: 14 inbound blocked, 2 outbound monitored."

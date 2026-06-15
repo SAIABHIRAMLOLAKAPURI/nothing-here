@@ -42,6 +42,10 @@ class JarvisEngine:
             return self.agents.get("SecurityAgent").execute(user_input)
         elif any(kw in input_lower for kw in ["cad", "catia", "fem", "engineering", "calculation"]):
             return self.agents.get("EngineeringAgent").execute(user_input)
+        elif any(kw in input_lower for kw in ["hardware", "usb", "monitor"]):
+            return self.agents.get("HardwareAgent").execute(user_input)
+        elif any(kw in input_lower for kw in ["software", "install", "update", "package"]):
+            return self.agents.get("SoftwareAgent").execute(user_input)
         elif any(kw in input_lower for kw in ["system", "shell", "process", "device", "control"]):
             return self.agents.get("SystemControlAgent").execute(user_input)
         else:

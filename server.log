@@ -6,6 +6,10 @@ INFO:JarvisEngine:Agent ProjectTrackingAgent registered.
 INFO:JarvisEngine:Agent MediaAgent registered.
 INFO:JarvisEngine:Agent SocialMediaAgent registered.
 INFO:JarvisEngine:Agent SecurityAgent registered.
+INFO:JarvisEngine:Agent EngineeringAgent registered.
+INFO:JarvisEngine:Agent LearningAgent registered.
+INFO:JarvisEngine:Agent HardwareAgent registered.
+INFO:JarvisEngine:Agent SoftwareAgent registered.
 INFO:JarvisEngine:Agent FreelancingAgent registered.
 INFO:JarvisEngine:Agent TradingAgent registered.
  * Serving Flask app 'server'
@@ -13,6 +17,6 @@ INFO:JarvisEngine:Agent TradingAgent registered.
 INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
  * Running on http://127.0.0.1:5000
 INFO:werkzeug:[33mPress CTRL+C to quit[0m
-INFO:werkzeug:127.0.0.1 - - [15/Jun/2026 16:24:21] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [15/Jun/2026 17:12:09] "GET / HTTP/1.1" 200 -
 INFO:JarvisEngine:Routing task: list files
-INFO:werkzeug:127.0.0.1 - - [15/Jun/2026 16:24:22] "POST /command HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [15/Jun/2026 17:12:10] "POST /command HTTP/1.1" 200 -

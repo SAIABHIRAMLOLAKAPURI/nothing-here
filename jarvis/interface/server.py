@@ -9,6 +9,8 @@ from jarvis.agents.project_tracking import ProjectTrackingAgent
 from jarvis.agents.expanded_agents import MediaAgent, SocialMediaAgent, SecurityAgent
 from jarvis.agents.engineering import EngineeringAgent
 from jarvis.agents.learning import LearningAgent
+from jarvis.agents.hardware_agent import HardwareAgent
+from jarvis.agents.software_agent import SoftwareAgent
 from jarvis.agents.java_bridge import JavaAgentBridge
 import os
 
@@ -27,6 +29,8 @@ engine.register_agent("SocialMediaAgent", SocialMediaAgent(engine))
 engine.register_agent("SecurityAgent", SecurityAgent(engine))
 engine.register_agent("EngineeringAgent", EngineeringAgent(engine))
 engine.register_agent("LearningAgent", LearningAgent(engine))
+engine.register_agent("HardwareAgent", HardwareAgent(engine))
+engine.register_agent("SoftwareAgent", SoftwareAgent(engine))
 engine.register_agent("FreelancingAgent", JavaAgentBridge("FreelancingAgent", engine, "jarvis.agents.FreelancingAgent"))
 engine.register_agent("TradingAgent", JavaAgentBridge("TradingAgent", engine, "jarvis.agents.TradingAgent"))
 

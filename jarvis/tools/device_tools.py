@@ -13,3 +13,9 @@ def kill_process(pid):
         return f"Process {pid} terminated."
     except Exception as e:
         return str(e)
+
+def list_usb():
+    return subprocess.check_output(["lsusb"], text=True)
+
+def list_software():
+    return subprocess.check_output(["dpkg", "--get-selections"], text=True)
