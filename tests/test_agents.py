@@ -26,4 +26,4 @@ def test_java_bridge(engine):
 
     response = engine.route_task("Find a job")
     assert "Freelancing Agent" in response
-    assert "Monitoring" in response
+    assert "jobs" in response

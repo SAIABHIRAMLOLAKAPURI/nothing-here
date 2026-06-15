@@ -15,6 +15,10 @@ class AICreationAgent(BaseAgent):
             return self.debug_code(task)
         elif "self-upgrade" in task:
             return self.self_upgrade(task)
+        elif "architecture" in task or "design" in task:
+            return self.design_architecture(task)
+        elif "documentation" in task or "doc" in task:
+            return self.generate_docs(task)
         return f"AI Creation Agent processed: {task}"
 
     def self_upgrade(self, task):
@@ -32,5 +36,15 @@ class AICreationAgent(BaseAgent):
 
     def debug_code(self, code):
         return f"Debugged code: {code}"
+
+    def design_architecture(self, requirements):
+        self.log(f"Designing architecture for: {requirements}")
+        # Logic to suggest components, patterns, and technologies
+        return f"Architectural Design for '{requirements}': Layered structure with modular agents."
+
+    def generate_docs(self, task):
+        self.log(f"Generating documentation for task: {task}")
+        # Logic to scan codebase and generate docstrings or README
+        return f"Documentation generated for codebase based on '{task}'."
 
 # Upgraded at runtime

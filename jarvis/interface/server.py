@@ -5,6 +5,10 @@ from jarvis.agents.ai_creation import AICreationAgent
 from jarvis.agents.automation import AutomationAgent
 from jarvis.agents.research import ResearchAgent
 from jarvis.agents.system_control import SystemControlAgent
+from jarvis.agents.project_tracking import ProjectTrackingAgent
+from jarvis.agents.expanded_agents import MediaAgent, SocialMediaAgent, SecurityAgent
+from jarvis.agents.engineering import EngineeringAgent
+from jarvis.agents.learning import LearningAgent
 from jarvis.agents.java_bridge import JavaAgentBridge
 import os
 
@@ -17,12 +21,18 @@ engine.register_agent("AICreationAgent", AICreationAgent(engine))
 engine.register_agent("AutomationAgent", AutomationAgent(engine))
 engine.register_agent("ResearchAgent", ResearchAgent(engine))
 engine.register_agent("SystemControlAgent", SystemControlAgent(engine))
+engine.register_agent("ProjectTrackingAgent", ProjectTrackingAgent(engine))
+engine.register_agent("MediaAgent", MediaAgent(engine))
+engine.register_agent("SocialMediaAgent", SocialMediaAgent(engine))
+engine.register_agent("SecurityAgent", SecurityAgent(engine))
+engine.register_agent("EngineeringAgent", EngineeringAgent(engine))
+engine.register_agent("LearningAgent", LearningAgent(engine))
 engine.register_agent("FreelancingAgent", JavaAgentBridge("FreelancingAgent", engine, "jarvis.agents.FreelancingAgent"))
 engine.register_agent("TradingAgent", JavaAgentBridge("TradingAgent", engine, "jarvis.agents.TradingAgent"))
 
 @app.route('/')
 def index():
-    return send_from_directory('.', 'index.html')
+    return send_from_directory(os.path.dirname(os.path.abspath(__file__)), 'index.html')
 
 @app.route('/command', methods=['POST'])
 def command():
@@ -35,6 +45,4 @@ def command():
     return jsonify({"response": response})
 
 if __name__ == '__main__':
-    # Serve from jarvis/interface directory
-    os.chdir(os.path.dirname(os.path.abspath(__file__)))
     app.run(port=5000)

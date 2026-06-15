@@ -33,13 +33,22 @@
             to { box-shadow: 0 0 30px #00d2ff; }
         }
         #chat-window {
-            width: 80%;
+            width: 60%;
             height: 40%;
             border: 1px solid #00d2ff;
             margin-top: 20px;
             padding: 10px;
             overflow-y: auto;
             background: rgba(0, 210, 255, 0.1);
+        }
+        #sidebar {
+            position: absolute;
+            right: 20px;
+            top: 20px;
+            width: 200px;
+            border-left: 1px solid #00d2ff;
+            padding-left: 20px;
+            text-align: left;
         }
         input {
             width: 80%;
@@ -55,12 +64,26 @@
     <div id="hud-container">
         <h1>JARVIS</h1>
     </div>
-    <div id="chat-window" id="chat">
+    <div id="sidebar">
+        <h3>SYSTEM STATUS</h3>
+        <div id="cpu">CPU: --%</div>
+        <div id="mem">MEM: --%</div>
+        <hr>
+        <h3>LOGS</h3>
+        <div id="log-entries" style="font-size: 0.8em; opacity: 0.7;"></div>
+    </div>
+    <div id="chat-window">
         <div>System Online. Absolute loyalty confirmed.</div>
     </div>
     <input type="text" id="user-input" placeholder="Give a command..." onkeydown="if(event.key==='Enter') sendCommand()">
 
     <script>
+        // System status simulation
+        setInterval(() => {
+            document.getElementById('cpu').innerText = "CPU: " + (Math.random() * 20 + 5).toFixed(1) + "%";
+            document.getElementById('mem').innerText = "MEM: " + (Math.random() * 10 + 40).toFixed(1) + "%";
+        }, 3000);
+
         async function sendCommand() {
             const input = document.getElementById('user-input');
             const chat = document.getElementById('chat-window');
@@ -84,6 +107,12 @@
                     const jarvisMsg = document.createElement('div');
                     jarvisMsg.innerText = "JARVIS: " + (data.response || data.error);
                     chat.appendChild(jarvisMsg);
+
+                    // Add to log
+                    const logEntries = document.getElementById('log-entries');
+                    const entry = document.createElement('div');
+                    entry.innerText = "> " + command;
+                    logEntries.appendChild(entry);
                 } catch (error) {
                     const errorMsg = document.createElement('div');
                     errorMsg.innerText = "System Error: Could not connect to core.";
