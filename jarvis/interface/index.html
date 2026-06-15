@@ -61,20 +61,35 @@
     <input type="text" id="user-input" placeholder="Give a command..." onkeydown="if(event.key==='Enter') sendCommand()">
 
     <script>
-        function sendCommand() {
+        async function sendCommand() {
             const input = document.getElementById('user-input');
             const chat = document.getElementById('chat-window');
-            if (input.value) {
+            const command = input.value;
+
+            if (command) {
                 const userMsg = document.createElement('div');
-                userMsg.innerText = "User: " + input.value;
+                userMsg.innerText = "User: " + command;
                 chat.appendChild(userMsg);
 
-                // Simulate JARVIS response
-                const jarvisMsg = document.createElement('div');
-                jarvisMsg.innerText = "JARVIS: Processing " + input.value + "...";
-                chat.appendChild(jarvisMsg);
-
                 input.value = '';
+
+                try {
+                    const response = await fetch('/command', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ command: command })
+                    });
+                    const data = await response.json();
+
+                    const jarvisMsg = document.createElement('div');
+                    jarvisMsg.innerText = "JARVIS: " + (data.response || data.error);
+                    chat.appendChild(jarvisMsg);
+                } catch (error) {
+                    const errorMsg = document.createElement('div');
+                    errorMsg.innerText = "System Error: Could not connect to core.";
+                    chat.appendChild(errorMsg);
+                }
+
                 chat.scrollTop = chat.scrollHeight;
             }
         }

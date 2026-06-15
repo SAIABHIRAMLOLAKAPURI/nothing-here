@@ -30,6 +30,8 @@ class JarvisEngine:
             return self.agents.get("AutomationAgent").execute(user_input)
         elif any(kw in input_lower for kw in ["research", "summarize", "info", "gather"]):
             return self.agents.get("ResearchAgent").execute(user_input)
+        elif any(kw in input_lower for kw in ["system", "shell", "process", "device", "control"]):
+            return self.agents.get("SystemControlAgent").execute(user_input)
         else:
             return "I am not sure which agent should handle this task. Can you please clarify?"
 

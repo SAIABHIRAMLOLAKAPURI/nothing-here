@@ -1,3 +1,4 @@
+import os
 from jarvis.agents.base import BaseAgent
 
 class AutomationAgent(BaseAgent):
@@ -6,8 +7,15 @@ class AutomationAgent(BaseAgent):
 
     def execute(self, task):
         self.log(f"Processing Automation task: {task}")
-        if "file" in task or "folder" in task:
-            return "Managing files and folders..."
-        elif "launch" in task:
-            return "Launching application..."
+        input_lower = task.lower()
+        if "list files" in input_lower:
+            return str(os.listdir("."))
+        elif "current directory" in input_lower:
+            return os.getcwd()
+        elif "disk usage" in input_lower:
+            import shutil
+            total, used, free = shutil.disk_usage("/")
+            return f"Total: {total // (2**30)}GB, Used: {used // (2**30)}GB, Free: {free // (2**30)}GB"
+        elif "file" in task or "folder" in task:
+            return "Managing files and folders... (Generic)"
         return f"Automation Agent processed: {task}"
