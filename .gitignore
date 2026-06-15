@@ -1,0 +1,9 @@
+__pycache__/
+*.pyc
+*.class
+jarvis/data/memory/
+tests/data/memory/
+jarvis_gui_screenshot.png
+verify_gui.py
+test_core_integration.py
+test_agents_integration.py

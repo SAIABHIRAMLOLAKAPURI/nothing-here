@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JARVIS Interface</title>
+    <style>
+        body {
+            background-color: #000;
+            color: #00d2ff;
+            font-family: 'Courier New', Courier, monospace;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+        #hud-container {
+            border: 2px solid #00d2ff;
+            border-radius: 50%;
+            width: 300px;
+            height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            animation: pulse 2s infinite alternate;
+        }
+        @keyframes pulse {
+            from { box-shadow: 0 0 10px #00d2ff; }
+            to { box-shadow: 0 0 30px #00d2ff; }
+        }
+        #chat-window {
+            width: 80%;
+            height: 40%;
+            border: 1px solid #00d2ff;
+            margin-top: 20px;
+            padding: 10px;
+            overflow-y: auto;
+            background: rgba(0, 210, 255, 0.1);
+        }
+        input {
+            width: 80%;
+            background: transparent;
+            border: 1px solid #00d2ff;
+            color: #00d2ff;
+            padding: 10px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div id="hud-container">
+        <h1>JARVIS</h1>
+    </div>
+    <div id="chat-window" id="chat">
+        <div>System Online. Absolute loyalty confirmed.</div>
+    </div>
+    <input type="text" id="user-input" placeholder="Give a command..." onkeydown="if(event.key==='Enter') sendCommand()">
+
+    <script>
+        function sendCommand() {
+            const input = document.getElementById('user-input');
+            const chat = document.getElementById('chat-window');
+            if (input.value) {
+                const userMsg = document.createElement('div');
+                userMsg.innerText = "User: " + input.value;
+                chat.appendChild(userMsg);
+
+                // Simulate JARVIS response
+                const jarvisMsg = document.createElement('div');
+                jarvisMsg.innerText = "JARVIS: Processing " + input.value + "...";
+                chat.appendChild(jarvisMsg);
+
+                input.value = '';
+                chat.scrollTop = chat.scrollHeight;
+            }
+        }
+    </script>
+</body>
+</html>
