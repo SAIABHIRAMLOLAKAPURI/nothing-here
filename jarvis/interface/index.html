@@ -78,6 +78,8 @@
     <input type="text" id="user-input" placeholder="Give a command..." onkeydown="if(event.key==='Enter') sendCommand()">
 
     <script>
+        const API_TOKEN = "jarvis_secure_token_2026";
+
         // System status simulation
         setInterval(() => {
             document.getElementById('cpu').innerText = "CPU: " + (Math.random() * 20 + 5).toFixed(1) + "%";
@@ -99,7 +101,10 @@
                 try {
                     const response = await fetch('/command', {
                         method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Authorization': 'Bearer ' + API_TOKEN
+                        },
                         body: JSON.stringify({ command: command })
                     });
                     const data = await response.json();

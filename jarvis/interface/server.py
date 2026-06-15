@@ -17,6 +17,9 @@ import os
 app = Flask(__name__)
 CORS(app)
 
+# Security: In a real app, use environment variables.
+API_TOKEN = "jarvis_secure_token_2026"
+
 # Initialize Engine and Agents
 engine = JarvisEngine()
 engine.register_agent("AICreationAgent", AICreationAgent(engine))
@@ -40,6 +43,11 @@ def index():
 
 @app.route('/command', methods=['POST'])
 def command():
+    # Check for authentication
+    auth_header = request.headers.get('Authorization')
+    if auth_header != f"Bearer {API_TOKEN}":
+        return jsonify({"error": "Unauthorized"}), 401
+
     data = request.json
     user_input = data.get('command')
     if not user_input:

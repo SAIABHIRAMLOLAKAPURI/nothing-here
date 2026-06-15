@@ -1,0 +1,52 @@
+text,intent
+"write some python code",AICreationAgent
+"debug this javascript function",AICreationAgent
+"generate documentation for my project",AICreationAgent
+"design a software architecture",AICreationAgent
+"find me a freelance job",FreelancingAgent
+"generate a project proposal",FreelancingAgent
+"match my skills with jobs",FreelancingAgent
+"start background job monitor",FreelancingAgent
+"analyze the stock market",TradingAgent
+"check the latest price of bitcoin",TradingAgent
+"what is the market trend",TradingAgent
+"calculate my risk reward ratio",TradingAgent
+"list files in this directory",AutomationAgent
+"check my disk usage",AutomationAgent
+"what is my current directory",AutomationAgent
+"automate this system task",AutomationAgent
+"scrape this website http://example.com",ResearchAgent
+"summarize this research paper",ResearchAgent
+"gather information about quantum computing",ResearchAgent
+"analyze this document",ResearchAgent
+"create project Jarvis Expansion",ProjectTrackingAgent
+"what is the status of project X",ProjectTrackingAgent
+"track this task",ProjectTrackingAgent
+"list my active projects",ProjectTrackingAgent
+"play some music",MediaAgent
+"browse my media library",MediaAgent
+"list media files",MediaAgent
+"post a tweet",SocialMediaAgent
+"check my linkedin notifications",SocialMediaAgent
+"what are the social trends",SocialMediaAgent
+"run a security audit",SecurityAgent
+"build a firewall",SecurityAgent
+"stop this breach",SecurityAgent
+"audit my system ports",SecurityAgent
+"analyze this CAD drawing",EngineeringAgent
+"open autocad project",EngineeringAgent
+"run fem analysis",EngineeringAgent
+"calculate joint stress",EngineeringAgent
+"learn about artificial intelligence",LearningAgent
+"explain quantum mechanics",LearningAgent
+"study machine learning",LearningAgent
+"what did you learn about X",LearningAgent
+"list usb devices",HardwareAgent
+"monitor system temperature",HardwareAgent
+"check connected hardware",HardwareAgent
+"list installed software",SoftwareAgent
+"update system packages",SoftwareAgent
+"install new software",SoftwareAgent
+"run shell command ls -la",SystemControlAgent
+"monitor system processes",SystemControlAgent
+"execute this script",SystemControlAgent

@@ -1,0 +1,9 @@
+services:
+  jarvis:
+    build: .
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./jarvis/data:/app/jarvis/data
+    environment:
+      - PYTHONPATH=/app

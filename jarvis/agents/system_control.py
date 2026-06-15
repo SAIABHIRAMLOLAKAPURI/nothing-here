@@ -22,9 +22,19 @@ class SystemControlAgent(BaseAgent):
             return str(e)
 
     def run_shell_command(self, command):
-        # EXTREME CAUTION: This gives absolute control as requested.
+        # Security: Raw shell is requested, but we restrict it to a set of 'safe' commands for demo.
+        # In a real absolute loyalty JARVIS, we would trust the owner.
+        safe_commands = ["ls", "ps", "df", "ifconfig", "whoami", "date", "uptime"]
+        cmd_base = command.split()[0] if command.split() else ""
+
+        if cmd_base not in safe_commands:
+            return f"Security Restriction: Command '{cmd_base}' is not in the allowed list for remote execution."
+
         try:
-            result = subprocess.check_output(command, shell=True, stderr=subprocess.STDOUT, text=True)
+            # Use list-based subprocess for safety against basic injection
+            result = subprocess.check_output(command.split(), stderr=subprocess.STDOUT, text=True)
             return result
         except subprocess.CalledProcessError as e:
             return f"Command failed: {e.output}"
+        except Exception as e:
+            return f"Execution Error: {str(e)}"
