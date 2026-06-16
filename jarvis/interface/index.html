@@ -8,7 +8,7 @@
         body {
             background-color: #000;
             color: #00d2ff;
-            font-family: 'Courier New', Courier, monospace;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
             display: flex;
             flex-direction: column;
@@ -16,9 +16,10 @@
             justify-content: center;
             height: 100vh;
             overflow: hidden;
+            background: radial-gradient(circle, #001a33 0%, #000 100%);
         }
         #hud-container {
-            border: 2px solid #00d2ff;
+            border: 4px double #00d2ff;
             border-radius: 50%;
             width: 300px;
             height: 300px;
@@ -26,64 +27,179 @@
             align-items: center;
             justify-content: center;
             position: relative;
+            box-shadow: 0 0 20px #00d2ff, inset 0 0 20px #00d2ff;
+            margin-bottom: 20px;
+            transition: all 0.5s ease;
+        }
+        #hud-container::before {
+            content: '';
+            position: absolute;
+            width: 110%;
+            height: 110%;
+            border: 1px dashed #00d2ff;
+            border-radius: 50%;
+            animation: rotate 20s linear infinite;
+        }
+        #arc-reactor {
+            width: 150px;
+            height: 150px;
+            border: 5px solid #00d2ff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 0 50px #00d2ff, inset 0 0 30px #00d2ff;
             animation: pulse 2s infinite alternate;
         }
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
         @keyframes pulse {
-            from { box-shadow: 0 0 10px #00d2ff; }
-            to { box-shadow: 0 0 30px #00d2ff; }
+            from { opacity: 0.6; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1.05); }
         }
         #chat-window {
-            width: 60%;
-            height: 40%;
-            border: 1px solid #00d2ff;
-            margin-top: 20px;
-            padding: 10px;
+            width: 70%;
+            height: 35%;
+            border: 1px solid rgba(0, 210, 255, 0.3);
+            margin-top: 10px;
+            padding: 15px;
             overflow-y: auto;
-            background: rgba(0, 210, 255, 0.1);
+            background: rgba(0, 50, 100, 0.2);
+            backdrop-filter: blur(5px);
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 210, 255, 0.2);
+            scrollbar-width: thin;
+            scrollbar-color: #00d2ff transparent;
+        }
+        #chat-window::-webkit-scrollbar {
+            width: 5px;
+        }
+        #chat-window::-webkit-scrollbar-thumb {
+            background-color: #00d2ff;
         }
         #sidebar {
             position: absolute;
-            right: 20px;
-            top: 20px;
-            width: 200px;
-            border-left: 1px solid #00d2ff;
-            padding-left: 20px;
-            text-align: left;
+            right: 30px;
+            top: 30px;
+            width: 220px;
+            background: rgba(0, 210, 255, 0.05);
+            padding: 15px;
+            border-radius: 5px;
+            border: 1px solid rgba(0, 210, 255, 0.2);
         }
-        input {
-            width: 80%;
-            background: transparent;
+        .controls {
+            margin-top: 15px;
+            display: flex;
+            gap: 10px;
+        }
+        button {
+            background: rgba(0, 210, 255, 0.1);
             border: 1px solid #00d2ff;
             color: #00d2ff;
-            padding: 10px;
-            margin-top: 10px;
+            padding: 5px 15px;
+            cursor: pointer;
+            transition: all 0.3s;
         }
+        button:hover {
+            background: #00d2ff;
+            color: #000;
+        }
+        input {
+            width: 70%;
+            background: rgba(0, 210, 255, 0.1);
+            border: 1px solid #00d2ff;
+            color: #00d2ff;
+            padding: 12px;
+            margin-top: 15px;
+            border-radius: 5px;
+            outline: none;
+        }
+        .user-msg { color: #fff; margin-bottom: 5px; }
+        .jarvis-msg { color: #00d2ff; font-weight: bold; margin-bottom: 10px; border-left: 2px solid #00d2ff; padding-left: 10px; }
     </style>
 </head>
 <body>
     <div id="hud-container">
-        <h1>JARVIS</h1>
+        <div id="arc-reactor">
+            <h2 style="text-shadow: 0 0 10px #00d2ff;">JARVIS</h2>
+        </div>
     </div>
+
     <div id="sidebar">
-        <h3>SYSTEM STATUS</h3>
+        <h3 style="margin-top:0;">SYSTEM STATUS</h3>
         <div id="cpu">CPU: --%</div>
         <div id="mem">MEM: --%</div>
-        <hr>
-        <h3>LOGS</h3>
-        <div id="log-entries" style="font-size: 0.8em; opacity: 0.7;"></div>
+        <hr style="border-color: rgba(0, 210, 255, 0.2);">
+        <h3>CORE LOGS</h3>
+        <div id="log-entries" style="font-size: 0.8em; opacity: 0.7; height: 100px; overflow-y: auto;"></div>
     </div>
+
     <div id="chat-window">
-        <div>System Online. Absolute loyalty confirmed.</div>
+        <div class="jarvis-msg">System Online. Absolute loyalty confirmed. Voice interface initialized.</div>
     </div>
-    <input type="text" id="user-input" placeholder="Give a command..." onkeydown="if(event.key==='Enter') sendCommand()">
+
+    <input type="text" id="user-input" placeholder="Awaiting your command, Sir..." onkeydown="if(event.key==='Enter') sendCommand()">
+
+    <div class="controls">
+        <button id="voice-toggle">Voice: ON</button>
+        <button id="mic-btn">Listen</button>
+    </div>
 
     <script>
         const API_TOKEN = "jarvis_secure_token_2026";
+        let voiceEnabled = true;
+
+        // Voice Synth
+        const synth = window.speechSynthesis;
+        function speak(text) {
+            if (!voiceEnabled) return;
+            synth.cancel(); // Stop current speech
+            const utter = new SpeechSynthesisUtterance(text);
+            const voices = synth.getVoices();
+            // Try to find a sophisticated sounding voice
+            utter.voice = voices.find(v => v.name.includes('Google UK English Male') || v.name.includes('Male') || v.lang === 'en-GB') || voices[0];
+            utter.pitch = 0.9;
+            utter.rate = 1.0;
+            synth.speak(utter);
+        }
+
+        // Voice Recognition
+        const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+        if (SpeechRecognition) {
+            const recognition = new SpeechRecognition();
+            recognition.continuous = false;
+            recognition.interimResults = false;
+
+            recognition.onresult = (event) => {
+                const transcript = event.results[0][0].transcript;
+                document.getElementById('user-input').value = transcript;
+                sendCommand();
+            };
+
+            document.getElementById('mic-btn').onclick = () => {
+                recognition.start();
+                document.getElementById('mic-btn').innerText = "Listening...";
+            };
+
+            recognition.onend = () => {
+                document.getElementById('mic-btn').innerText = "Listen";
+            };
+        } else {
+            document.getElementById('mic-btn').style.display = 'none';
+        }
+
+        document.getElementById('voice-toggle').onclick = () => {
+            voiceEnabled = !voiceEnabled;
+            document.getElementById('voice-toggle').innerText = "Voice: " + (voiceEnabled ? "ON" : "OFF");
+            if (!voiceEnabled) synth.cancel();
+        };
 
         // System status simulation
         setInterval(() => {
-            document.getElementById('cpu').innerText = "CPU: " + (Math.random() * 20 + 5).toFixed(1) + "%";
-            document.getElementById('mem').innerText = "MEM: " + (Math.random() * 10 + 40).toFixed(1) + "%";
+            document.getElementById('cpu').innerText = "CPU: " + (Math.random() * 15 + 2).toFixed(1) + "%";
+            document.getElementById('mem').innerText = "MEM: " + (Math.random() * 5 + 38).toFixed(1) + "%";
         }, 3000);
 
         async function sendCommand() {
@@ -93,7 +209,8 @@
 
             if (command) {
                 const userMsg = document.createElement('div');
-                userMsg.innerText = "User: " + command;
+                userMsg.className = 'user-msg';
+                userMsg.innerText = "Sir: " + command;
                 chat.appendChild(userMsg);
 
                 input.value = '';
@@ -110,23 +227,32 @@
                     const data = await response.json();
 
                     const jarvisMsg = document.createElement('div');
-                    jarvisMsg.innerText = "JARVIS: " + (data.response || data.error);
+                    jarvisMsg.className = 'jarvis-msg';
+                    const reply = data.response || data.error;
+                    jarvisMsg.innerText = "JARVIS: " + reply;
                     chat.appendChild(jarvisMsg);
+
+                    speak(reply);
 
                     // Add to log
                     const logEntries = document.getElementById('log-entries');
                     const entry = document.createElement('div');
                     entry.innerText = "> " + command;
-                    logEntries.appendChild(entry);
+                    logEntries.prepend(entry);
                 } catch (error) {
                     const errorMsg = document.createElement('div');
-                    errorMsg.innerText = "System Error: Could not connect to core.";
+                    errorMsg.innerText = "System Error: Core connection lost.";
                     chat.appendChild(errorMsg);
                 }
 
                 chat.scrollTop = chat.scrollHeight;
             }
         }
+
+        // Initial Greeting
+        window.onload = () => {
+            setTimeout(() => speak("System online. At your service, Sir."), 1000);
+        };
     </script>
 </body>
 </html>

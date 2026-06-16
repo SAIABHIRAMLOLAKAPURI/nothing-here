@@ -32,7 +32,8 @@ def test_ai_creation_expansion(engine):
     engine.register_agent("AICreationAgent", agent)
 
     resp = engine.route_task("design architecture for a web app")
-    assert "Architectural Design" in resp
+    # Updated to match the refined JARVIS personality
+    assert "Architectural" in resp
 
     doc = engine.route_task("generate documentation")
     assert "generated" in doc

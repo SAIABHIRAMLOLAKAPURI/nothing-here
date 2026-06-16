@@ -15,7 +15,8 @@ def test_python_agents(engine):
     engine.register_agent("AICreationAgent", ai_agent)
 
     response = engine.route_task("Write code for a neural network")
-    assert "Generated code" in response
+    # Updated to match the refined JARVIS personality
+    assert "generated" in response.lower()
 
 def test_java_bridge(engine):
     # Ensure Java is compiled

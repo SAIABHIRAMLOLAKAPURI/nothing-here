@@ -3,50 +3,87 @@ text,intent
 "debug this javascript function",AICreationAgent
 "generate documentation for my project",AICreationAgent
 "design a software architecture",AICreationAgent
+"optimize this code block",AICreationAgent
+"create a new agent for email monitoring",AICreationAgent
+"design a modular system architecture",AICreationAgent
+"engineering calculations for bridge stress",AICreationAgent
 "find me a freelance job",FreelancingAgent
 "generate a project proposal",FreelancingAgent
 "match my skills with jobs",FreelancingAgent
 "start background job monitor",FreelancingAgent
+"analyze market opportunities",FreelancingAgent
+"portfolio recommendations for a web developer",FreelancingAgent
+"analyze client requirements for this RFP",FreelancingAgent
 "analyze the stock market",TradingAgent
 "check the latest price of bitcoin",TradingAgent
 "what is the market trend",TradingAgent
 "calculate my risk reward ratio",TradingAgent
+"perform technical analysis on NVIDIA",TradingAgent
+"what is the sentiment for apple stock",TradingAgent
+"backtest my moving average strategy",TradingAgent
 "list files in this directory",AutomationAgent
 "check my disk usage",AutomationAgent
 "what is my current directory",AutomationAgent
 "automate this system task",AutomationAgent
+"organize my downloads folder",AutomationAgent
+"launch the chrome browser",AutomationAgent
+"monitor system resources",AutomationAgent
 "scrape this website http://example.com",ResearchAgent
 "summarize this research paper",ResearchAgent
 "gather information about quantum computing",ResearchAgent
 "analyze this document",ResearchAgent
+"create a knowledge base about renewable energy",ResearchAgent
+"generate a report on market trends",ResearchAgent
+"find information about Mars exploration",ResearchAgent
 "create project Jarvis Expansion",ProjectTrackingAgent
 "what is the status of project X",ProjectTrackingAgent
 "track this task",ProjectTrackingAgent
 "list my active projects",ProjectTrackingAgent
+"update project timeline",ProjectTrackingAgent
+"add a milestone to project alpha",ProjectTrackingAgent
 "play some music",MediaAgent
 "browse my media library",MediaAgent
 "list media files",MediaAgent
+"open my photos folder",MediaAgent
+"find movies in my directory",MediaAgent
 "post a tweet",SocialMediaAgent
 "check my linkedin notifications",SocialMediaAgent
 "what are the social trends",SocialMediaAgent
+"analyze social media sentiment",SocialMediaAgent
+"follow this user on twitter",SocialMediaAgent
 "run a security audit",SecurityAgent
 "build a firewall",SecurityAgent
 "stop this breach",SecurityAgent
 "audit my system ports",SecurityAgent
+"scan for vulnerabilities",SecurityAgent
+"defend against network attacks",SecurityAgent
 "analyze this CAD drawing",EngineeringAgent
 "open autocad project",EngineeringAgent
 "run fem analysis",EngineeringAgent
 "calculate joint stress",EngineeringAgent
+"perform catia assistance",EngineeringAgent
+"help with engineering design",EngineeringAgent
 "learn about artificial intelligence",LearningAgent
 "explain quantum mechanics",LearningAgent
 "study machine learning",LearningAgent
 "what did you learn about X",LearningAgent
+"recommend some study material for physics",LearningAgent
+"explain the concept of recursion",LearningAgent
 "list usb devices",HardwareAgent
 "monitor system temperature",HardwareAgent
 "check connected hardware",HardwareAgent
+"get hardware specifications",HardwareAgent
 "list installed software",SoftwareAgent
 "update system packages",SoftwareAgent
 "install new software",SoftwareAgent
+"check for software updates",SoftwareAgent
 "run shell command ls -la",SystemControlAgent
 "monitor system processes",SystemControlAgent
 "execute this script",SystemControlAgent
+"who are you",LearningAgent
+"hello jarvis",LearningAgent
+"are you there",LearningAgent
+"what can you do",LearningAgent
+"how are you today",LearningAgent
+"good morning jarvis",LearningAgent
+"status report",SystemControlAgent
