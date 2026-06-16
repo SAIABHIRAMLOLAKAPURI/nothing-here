@@ -15,6 +15,8 @@ def build():
         '--collect-all=sklearn',
         '--collect-all=pandas',
         '--collect-all=flask',
+        '--collect-all=webview',
+        '--hidden-import=clr', # Common for pywebview on windows
     ]
 
     PyInstaller.__main__.run(params)
