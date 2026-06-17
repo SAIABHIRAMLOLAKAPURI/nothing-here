@@ -1,4 +1,4 @@
-from jarvis.agents.base import BaseAgent
+from tejodaya.agents.base import BaseAgent
 
 class LearningAgent(BaseAgent):
     def __init__(self, engine):
@@ -11,10 +11,10 @@ class LearningAgent(BaseAgent):
         # Conversational / Greetings
         greetings = ["hello", "hi ", "hey", "good morning", "good evening", "how are you"]
         if any(g in input_lower for g in greetings):
-            return "Hello Sir. I am JARVIS, your personal AI assistant. How may I assist you today?"
+            return "Hello Sir. I am Tejodaya, your personal AI assistant. How may I assist you today?"
 
         if "who are you" in input_lower:
-            return "I am JARVIS, a Just A Rather Very Intelligent System. I am your personal assistant, with absolute loyalty to you."
+            return "I am Tejodaya, a Just A Rather Very Intelligent System. I am your personal assistant, with absolute loyalty to you."
 
         if "what can you do" in input_lower:
             return "I can manage your system, perform research, analyze markets, assist with engineering, track projects, and learn new information as needed."

@@ -17,13 +17,13 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY . .
 
 # Compile Java agents
-RUN javac -d jarvis/agents/java jarvis/agents/java/*.java
+RUN javac -d tejodaya/agents/java tejodaya/agents/java/*.java
 
 # Train the model
-RUN python3 jarvis/core/trainer.py
+RUN python3 tejodaya/core/trainer.py
 
 # Expose port
 EXPOSE 5000
 
 # Command to run the application
-CMD ["python3", "jarvis/interface/server.py"]
+CMD ["python3", "tejodaya/interface/server.py"]

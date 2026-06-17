@@ -1,5 +1,5 @@
 import subprocess
-from jarvis.agents.base import BaseAgent
+from tejodaya.agents.base import BaseAgent
 
 class SoftwareAgent(BaseAgent):
     def __init__(self, engine):

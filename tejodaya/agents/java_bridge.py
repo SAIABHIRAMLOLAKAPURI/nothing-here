@@ -1,6 +1,6 @@
 import subprocess
 import os
-from jarvis.agents.base import BaseAgent
+from tejodaya.agents.base import BaseAgent
 
 class JavaAgentBridge(BaseAgent):
     def __init__(self, name, engine, java_class):
@@ -9,7 +9,7 @@ class JavaAgentBridge(BaseAgent):
 
     def execute(self, task):
         self.log(f"Delegating task to Java: {task}")
-        classpath = os.path.join("jarvis", "agents", "java")
+        classpath = os.path.join("tejodaya", "agents", "java")
         try:
             # For long-running background tasks, we should use Popen or a service.
             # For now, we continue using check_output for synchronous requests,

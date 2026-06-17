@@ -1,5 +1,5 @@
 import os
-from jarvis.agents.base import BaseAgent
+from tejodaya.agents.base import BaseAgent
 
 class AutomationAgent(BaseAgent):
     def __init__(self, engine):

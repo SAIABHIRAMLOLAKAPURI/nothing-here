@@ -1,9 +1,9 @@
 import pytest
-from jarvis.core.engine import JarvisEngine
-from jarvis.core.memory import JarvisMemory
-from jarvis.agents.project_tracking import ProjectTrackingAgent
-from jarvis.agents.ai_creation import AICreationAgent
-from jarvis.agents.research import ResearchAgent
+from tejodaya.core.engine import TejodayaEngine
+from tejodaya.core.memory import TejodayaMemory
+from tejodaya.agents.project_tracking import ProjectTrackingAgent
+from tejodaya.agents.ai_creation import AICreationAgent
+from tejodaya.agents.research import ResearchAgent
 import os
 import shutil
 
@@ -12,8 +12,8 @@ def engine():
     test_path = "tests/data/memory_expansion/"
     if os.path.exists(test_path):
         shutil.rmtree(test_path)
-    mem = JarvisMemory(storage_path=test_path)
-    e = JarvisEngine()
+    mem = TejodayaMemory(storage_path=test_path)
+    e = TejodayaEngine()
     e.set_memory(mem)
     return e
 
@@ -32,7 +32,7 @@ def test_ai_creation_expansion(engine):
     engine.register_agent("AICreationAgent", agent)
 
     resp = engine.route_task("design architecture for a web app")
-    # Updated to match the refined JARVIS personality
+    # Updated to match the refined Tejodaya personality
     assert "Architectural" in resp
 
     doc = engine.route_task("generate documentation")

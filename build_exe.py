@@ -3,15 +3,15 @@ import os
 import shutil
 
 def build():
-    print("Building JARVIS Executable...")
+    print("Building Tejodaya Executable...")
 
     # Define parameters for PyInstaller
     sep = ';' if os.name == 'nt' else ':'
     params = [
         'app.py',
         '--onefile',
-        '--name=JARVIS',
-        f'--add-data=jarvis{sep}jarvis',
+        '--name=Tejodaya',
+        f'--add-data=tejodaya{sep}tejodaya',
         '--collect-all=sklearn',
         '--collect-all=pandas',
         '--collect-all=flask',

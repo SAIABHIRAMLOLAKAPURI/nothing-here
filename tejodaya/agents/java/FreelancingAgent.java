@@ -1,4 +1,4 @@
-package jarvis.agents;
+package tejodaya.agents;
 
 public class FreelancingAgent {
     public static void main(String[] args) {
