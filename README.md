@@ -1,6 +1,6 @@
-# JARVIS - AI Personal Assistant
+# Tejodaya - AI Personal Assistant
 
-JARVIS is a modular AI assistant that combines Python and Java for a powerful multi-agent experience.
+Tejodaya is a modular AI assistant that combines Python and Java for a powerful multi-agent experience.
 
 ## Features
 - **Multi-Agent Architecture**: Specialized agents for AI creation, automation, research, trading, and freelancing.
@@ -30,7 +30,7 @@ JARVIS is a modular AI assistant that combines Python and Java for a powerful mu
    docker-compose up --build
    ```
 
-## Running JARVIS
+## Running Tejodaya
 
 ### Using the Application Wrapper (Simplest)
 The `app.py` script automatically trains the intent model, compiles Java agents, and starts the backend.
@@ -50,26 +50,26 @@ You can create a standalone executable for easier distribution:
 If you prefer manual steps:
 1. **Train the AI Model**:
    ```bash
-   python jarvis/core/trainer.py
+   python tejodaya/core/trainer.py
    ```
 2. **Compile Java Agents**:
    ```bash
-   javac -d jarvis/agents/java jarvis/agents/java/*.java
+   javac -d tejodaya/agents/java tejodaya/agents/java/*.java
    ```
 3. **Start the Backend**:
    ```bash
-   PYTHONPATH=. python jarvis/interface/server.py
+   PYTHONPATH=. python tejodaya/interface/server.py
    ```
 
 ## Accessing the Interface
 Once the server is running (at `http://localhost:5000`):
-- Open `jarvis/interface/index.html` directly in your web browser.
+- Open `tejodaya/interface/index.html` directly in your web browser.
 - Or navigate to `http://localhost:5000` if the server is serving static files.
 
 ### Security Note
 The application uses a static API token for communication between the frontend and backend.
-- **Default Token**: `jarvis_secure_token_2026`
-- This is configured in `jarvis/interface/server.py` and `jarvis/interface/index.html`.
+- **Default Token**: `tejodaya_secure_token_2026`
+- This is configured in `tejodaya/interface/server.py` and `tejodaya/interface/index.html`.
 
 ### Troubleshooting (Windows)
 If you get `ModuleNotFoundError` after installing requirements:

@@ -35,7 +35,7 @@ text,intent
 "create a knowledge base about renewable energy",ResearchAgent
 "generate a report on market trends",ResearchAgent
 "find information about Mars exploration",ResearchAgent
-"create project Jarvis Expansion",ProjectTrackingAgent
+"create project Tejodaya Expansion",ProjectTrackingAgent
 "what is the status of project X",ProjectTrackingAgent
 "track this task",ProjectTrackingAgent
 "list my active projects",ProjectTrackingAgent
@@ -81,9 +81,32 @@ text,intent
 "monitor system processes",SystemControlAgent
 "execute this script",SystemControlAgent
 "who are you",LearningAgent
-"hello jarvis",LearningAgent
+"hello tejodaya",LearningAgent
 "are you there",LearningAgent
 "what can you do",LearningAgent
 "how are you today",LearningAgent
-"good morning jarvis",LearningAgent
+"good morning tejodaya",LearningAgent
 "status report",SystemControlAgent
+"add task study quantum physics",LifeManagementAgent
+"schedule task workout at 5pm",LifeManagementAgent
+"list my tasks",LifeManagementAgent
+"show my daily timetable",LifeManagementAgent
+"generate a weekly schedule",LifeManagementAgent
+"reschedule my missed tasks",LifeManagementAgent
+"create a goal to learn rust",LifeManagementAgent
+"list my life goals",LifeManagementAgent
+"log meal chicken and rice",HealthAgent
+"i ate an apple",HealthAgent
+"show my nutrition report",HealthAgent
+"log workout chest day",HealthAgent
+"check my fitness progress",HealthAgent
+"i drank water",HealthAgent
+"add habit meditation",DisciplineAgent
+"track habit reading",DisciplineAgent
+"completed habit coding",DisciplineAgent
+"what is my discipline score",DisciplineAgent
+"show my level and xp",DisciplineAgent
+"give me feedback on my productivity",CoachAgent
+"suggest some improvements for my routine",CoachAgent
+"perform a weekly review",CoachAgent
+"i need a productivity coach",CoachAgent

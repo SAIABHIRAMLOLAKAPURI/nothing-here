@@ -1,4 +1,4 @@
-from jarvis.agents.base import BaseAgent
+from tejodaya.agents.base import BaseAgent
 
 import requests
 from bs4 import BeautifulSoup

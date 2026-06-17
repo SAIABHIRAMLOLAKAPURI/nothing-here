@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JARVIS Interface</title>
+    <title>Tejodaya Interface</title>
     <style>
         body {
             background-color: #000;
-            color: #00d2ff;
+            color: #ffaa00; /* Golden theme for Tejodaya */
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
             display: flex;
@@ -16,19 +16,19 @@
             justify-content: center;
             height: 100vh;
             overflow: hidden;
-            background: radial-gradient(circle, #001a33 0%, #000 100%);
+            background: radial-gradient(circle, #331a00 0%, #000 100%);
         }
         #hud-container {
-            border: 4px double #00d2ff;
+            border: 4px double #ffaa00;
             border-radius: 50%;
-            width: 300px;
-            height: 300px;
+            width: 250px;
+            height: 250px;
             display: flex;
             align-items: center;
             justify-content: center;
             position: relative;
-            box-shadow: 0 0 20px #00d2ff, inset 0 0 20px #00d2ff;
-            margin-bottom: 20px;
+            box-shadow: 0 0 20px #ffaa00, inset 0 0 20px #ffaa00;
+            margin-bottom: 10px;
             transition: all 0.5s ease;
         }
         #hud-container::before {
@@ -36,19 +36,19 @@
             position: absolute;
             width: 110%;
             height: 110%;
-            border: 1px dashed #00d2ff;
+            border: 1px dashed #ffaa00;
             border-radius: 50%;
             animation: rotate 20s linear infinite;
         }
         #arc-reactor {
-            width: 150px;
-            height: 150px;
-            border: 5px solid #00d2ff;
+            width: 120px;
+            height: 120px;
+            border: 5px solid #ffaa00;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 0 50px #00d2ff, inset 0 0 30px #00d2ff;
+            box-shadow: 0 0 50px #ffaa00, inset 0 0 30px #ffaa00;
             animation: pulse 2s infinite alternate;
         }
         @keyframes rotate {
@@ -60,84 +60,111 @@
             to { opacity: 1; transform: scale(1.05); }
         }
         #chat-window {
-            width: 70%;
-            height: 35%;
-            border: 1px solid rgba(0, 210, 255, 0.3);
+            width: 80%;
+            height: 30%;
+            border: 1px solid rgba(255, 170, 0, 0.3);
             margin-top: 10px;
             padding: 15px;
             overflow-y: auto;
-            background: rgba(0, 50, 100, 0.2);
+            background: rgba(50, 30, 0, 0.2);
             backdrop-filter: blur(5px);
             border-radius: 10px;
-            box-shadow: 0 0 15px rgba(0, 210, 255, 0.2);
+            box-shadow: 0 0 15px rgba(255, 170, 0, 0.2);
             scrollbar-width: thin;
-            scrollbar-color: #00d2ff transparent;
+            scrollbar-color: #ffaa00 transparent;
         }
         #chat-window::-webkit-scrollbar {
             width: 5px;
         }
         #chat-window::-webkit-scrollbar-thumb {
-            background-color: #00d2ff;
+            background-color: #ffaa00;
         }
         #sidebar {
             position: absolute;
-            right: 30px;
-            top: 30px;
-            width: 220px;
-            background: rgba(0, 210, 255, 0.05);
+            right: 20px;
+            top: 20px;
+            width: 250px;
+            background: rgba(255, 170, 0, 0.05);
             padding: 15px;
             border-radius: 5px;
-            border: 1px solid rgba(0, 210, 255, 0.2);
+            border: 1px solid rgba(255, 170, 0, 0.2);
+        }
+        #left-sidebar {
+            position: absolute;
+            left: 20px;
+            top: 20px;
+            width: 250px;
+            background: rgba(255, 170, 0, 0.05);
+            padding: 15px;
+            border-radius: 5px;
+            border: 1px solid rgba(255, 170, 0, 0.2);
         }
         .controls {
-            margin-top: 15px;
+            margin-top: 10px;
             display: flex;
             gap: 10px;
         }
         button {
-            background: rgba(0, 210, 255, 0.1);
-            border: 1px solid #00d2ff;
-            color: #00d2ff;
+            background: rgba(255, 170, 0, 0.1);
+            border: 1px solid #ffaa00;
+            color: #ffaa00;
             padding: 5px 15px;
             cursor: pointer;
             transition: all 0.3s;
         }
         button:hover {
-            background: #00d2ff;
+            background: #ffaa00;
             color: #000;
         }
         input {
-            width: 70%;
-            background: rgba(0, 210, 255, 0.1);
-            border: 1px solid #00d2ff;
-            color: #00d2ff;
+            width: 80%;
+            background: rgba(255, 170, 0, 0.1);
+            border: 1px solid #ffaa00;
+            color: #ffaa00;
             padding: 12px;
-            margin-top: 15px;
+            margin-top: 10px;
             border-radius: 5px;
             outline: none;
         }
         .user-msg { color: #fff; margin-bottom: 5px; }
-        .jarvis-msg { color: #00d2ff; font-weight: bold; margin-bottom: 10px; border-left: 2px solid #00d2ff; padding-left: 10px; }
+        .tejodaya-msg { color: #ffaa00; font-weight: bold; margin-bottom: 10px; border-left: 2px solid #ffaa00; padding-left: 10px; }
+        .dashboard-item { margin-bottom: 10px; font-size: 0.9em; }
+        .progress-bar { width: 100%; height: 5px; background: #222; border-radius: 5px; margin-top: 5px; }
+        .progress-fill { height: 100%; background: #ffaa00; border-radius: 5px; width: 0%; transition: width 1s; }
     </style>
 </head>
 <body>
+    <div id="left-sidebar">
+        <h3 style="margin-top:0;">LIFE MANAGEMENT</h3>
+        <div class="dashboard-item">Tasks: <span id="task-count">0</span></div>
+        <div class="dashboard-item">Goals: <span id="goal-count">0</span></div>
+        <div class="dashboard-item">Discipline Score: <span id="discipline-score">0</span>%
+            <div class="progress-bar"><div id="discipline-progress" class="progress-fill"></div></div>
+        </div>
+        <div class="dashboard-item">XP Level: <span id="xp-level">1</span>
+            <div class="progress-bar"><div id="xp-progress" class="progress-fill"></div></div>
+        </div>
+    </div>
+
     <div id="hud-container">
         <div id="arc-reactor">
-            <h2 style="text-shadow: 0 0 10px #00d2ff;">JARVIS</h2>
+            <h2 style="text-shadow: 0 0 10px #ffaa00;">TEJODAYA</h2>
         </div>
     </div>
 
     <div id="sidebar">
-        <h3 style="margin-top:0;">SYSTEM STATUS</h3>
+        <h3 style="margin-top:0;">HEALTH STATUS</h3>
+        <div class="dashboard-item">Hydration: <span id="water-log">0</span> glasses</div>
+        <div class="dashboard-item">Calories: <span id="calories">0</span> / 2500</div>
+        <div class="dashboard-item">Workout: <span id="workout-status">Not Started</span></div>
+        <hr style="border-color: rgba(255, 170, 0, 0.2);">
+        <h3>SYSTEM STATUS</h3>
         <div id="cpu">CPU: --%</div>
         <div id="mem">MEM: --%</div>
-        <hr style="border-color: rgba(0, 210, 255, 0.2);">
-        <h3>CORE LOGS</h3>
-        <div id="log-entries" style="font-size: 0.8em; opacity: 0.7; height: 100px; overflow-y: auto;"></div>
     </div>
 
     <div id="chat-window">
-        <div class="jarvis-msg">System Online. Absolute loyalty confirmed. Voice interface initialized.</div>
+        <div class="tejodaya-msg">Tejodaya Online. Life Management System Initialized. Awaiting your guidance, Sir.</div>
     </div>
 
     <input type="text" id="user-input" placeholder="Awaiting your command, Sir..." onkeydown="if(event.key==='Enter') sendCommand()">
@@ -148,17 +175,16 @@
     </div>
 
     <script>
-        const API_TOKEN = "jarvis_secure_token_2026";
+        const API_TOKEN = "tejodaya_secure_token_2026";
         let voiceEnabled = true;
 
         // Voice Synth
         const synth = window.speechSynthesis;
         function speak(text) {
             if (!voiceEnabled) return;
-            synth.cancel(); // Stop current speech
+            synth.cancel();
             const utter = new SpeechSynthesisUtterance(text);
             const voices = synth.getVoices();
-            // Try to find a sophisticated sounding voice
             utter.voice = voices.find(v => v.name.includes('Google UK English Male') || v.name.includes('Male') || v.lang === 'en-GB') || voices[0];
             utter.pitch = 0.9;
             utter.rate = 1.0;
@@ -226,19 +252,15 @@
                     });
                     const data = await response.json();
 
-                    const jarvisMsg = document.createElement('div');
-                    jarvisMsg.className = 'jarvis-msg';
+                    const tejodayaMsg = document.createElement('div');
+                    tejodayaMsg.className = 'tejodaya-msg';
                     const reply = data.response || data.error;
-                    jarvisMsg.innerText = "JARVIS: " + reply;
-                    chat.appendChild(jarvisMsg);
+                    tejodayaMsg.innerText = "TEJODAYA: " + reply;
+                    chat.appendChild(tejodayaMsg);
 
                     speak(reply);
+                    updateDashboard(command, reply);
 
-                    // Add to log
-                    const logEntries = document.getElementById('log-entries');
-                    const entry = document.createElement('div');
-                    entry.innerText = "> " + command;
-                    logEntries.prepend(entry);
                 } catch (error) {
                     const errorMsg = document.createElement('div');
                     errorMsg.innerText = "System Error: Core connection lost.";
@@ -249,9 +271,33 @@
             }
         }
 
+        function updateDashboard(cmd, reply) {
+            const c = cmd.toLowerCase();
+            if (c.includes("add task")) {
+                document.getElementById('task-count').innerText = parseInt(document.getElementById('task-count').innerText) + 1;
+            } else if (c.includes("add goal")) {
+                document.getElementById('goal-count').innerText = parseInt(document.getElementById('goal-count').innerText) + 1;
+            } else if (c.includes("water")) {
+                document.getElementById('water-log').innerText = parseInt(document.getElementById('water-log').innerText) + 1;
+            } else if (c.includes("habit") || c.includes("completed")) {
+                let score = Math.min(100, parseInt(document.getElementById('discipline-score').innerText) + 5);
+                document.getElementById('discipline-score').innerText = score;
+                document.getElementById('discipline-progress').style.width = score + "%";
+
+                let xp = parseInt(document.getElementById('xp-progress').style.width || 0) + 10;
+                if (xp >= 100) {
+                    xp = 0;
+                    document.getElementById('xp-level').innerText = parseInt(document.getElementById('xp-level').innerText) + 1;
+                }
+                document.getElementById('xp-progress').style.width = xp + "%";
+            } else if (c.includes("workout")) {
+                document.getElementById('workout-status').innerText = "Logged";
+            }
+        }
+
         // Initial Greeting
         window.onload = () => {
-            setTimeout(() => speak("System online. At your service, Sir."), 1000);
+            setTimeout(() => speak("Tejodaya online. At your service, Sir. Life management system is operational."), 1000);
         };
     </script>
 </body>

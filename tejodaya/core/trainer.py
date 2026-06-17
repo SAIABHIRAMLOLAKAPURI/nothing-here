@@ -6,7 +6,7 @@ import joblib
 import os
 
 class IntentTrainer:
-    def __init__(self, data_path="jarvis/data/intents.csv", model_path="jarvis/data/intent_model.pkl"):
+    def __init__(self, data_path="tejodaya/data/intents.csv", model_path="tejodaya/data/intent_model.pkl"):
         self.data_path = data_path
         self.model_path = model_path
 

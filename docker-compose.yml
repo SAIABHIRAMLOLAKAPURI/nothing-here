@@ -1,9 +1,9 @@
 services:
-  jarvis:
+  tejodaya:
     build: .
     ports:
       - "5000:5000"
     volumes:
-      - ./jarvis/data:/app/jarvis/data
+      - ./tejodaya/data:/app/tejodaya/data
     environment:
       - PYTHONPATH=/app

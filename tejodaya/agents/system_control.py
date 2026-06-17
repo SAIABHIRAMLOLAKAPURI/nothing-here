@@ -2,7 +2,7 @@ import subprocess
 import platform
 import psutil
 import time
-from jarvis.agents.base import BaseAgent
+from tejodaya.agents.base import BaseAgent
 
 class SystemControlAgent(BaseAgent):
     def __init__(self, engine):
@@ -48,7 +48,7 @@ class SystemControlAgent(BaseAgent):
             return f"Process monitoring failed: {str(e)}"
 
     def run_shell_command(self, command):
-        # In a real absolute loyalty JARVIS, we would trust the owner.
+        # In a real absolute loyalty Tejodaya, we would trust the owner.
         safe_commands = ["ls", "ps", "df", "ifconfig", "whoami", "date", "uptime", "tasklist", "dir", "ipconfig", "netstat", "echo"]
         cmd_parts = command.split()
         cmd_base = cmd_parts[0] if cmd_parts else ""

@@ -1,4 +1,4 @@
-package jarvis.agents;
+package tejodaya.agents;
 
 public class TradingAgent {
     public static void main(String[] args) {

@@ -1,5 +1,5 @@
-from jarvis.agents.base import BaseAgent
-from jarvis.core.self_handler import SelfHandler
+from tejodaya.agents.base import BaseAgent
+from tejodaya.core.self_handler import SelfHandler
 import os
 
 class AICreationAgent(BaseAgent):
@@ -29,7 +29,7 @@ class AICreationAgent(BaseAgent):
         # Self-modification simulation: Adding a timestamped signature
         import datetime
         timestamp = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-        source_path = "jarvis/agents/ai_creation.py"
+        source_path = "tejodaya/agents/ai_creation.py"
         source = self.self_handler.read_source(source_path)
         if source:
             if "# Last self-upgrade:" in source:
@@ -48,7 +48,7 @@ class AICreationAgent(BaseAgent):
         if len(parts) >= 2:
             text = parts[0].strip().strip('"')
             intent = parts[1].strip()
-            csv_path = "jarvis/data/intents.csv"
+            csv_path = "tejodaya/data/intents.csv"
             with open(csv_path, 'a') as f:
                 f.write(f'\n"{text}",{intent}')
             return f"New intent recorded: '{text}' for agent '{intent}'. Shall I retrain the model, Sir?"

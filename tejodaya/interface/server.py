@@ -1,27 +1,35 @@
 from flask import Flask, request, jsonify, send_from_directory
 from flask_cors import CORS
-from jarvis.core.engine import JarvisEngine
-from jarvis.agents.ai_creation import AICreationAgent
-from jarvis.agents.automation import AutomationAgent
-from jarvis.agents.research import ResearchAgent
-from jarvis.agents.system_control import SystemControlAgent
-from jarvis.agents.project_tracking import ProjectTrackingAgent
-from jarvis.agents.expanded_agents import MediaAgent, SocialMediaAgent, SecurityAgent
-from jarvis.agents.engineering import EngineeringAgent
-from jarvis.agents.learning import LearningAgent
-from jarvis.agents.hardware_agent import HardwareAgent
-from jarvis.agents.software_agent import SoftwareAgent
-from jarvis.agents.java_bridge import JavaAgentBridge
+from tejodaya.core.engine import TejodayaEngine
+from tejodaya.agents.ai_creation import AICreationAgent
+from tejodaya.agents.automation import AutomationAgent
+from tejodaya.agents.research import ResearchAgent
+from tejodaya.agents.system_control import SystemControlAgent
+from tejodaya.agents.project_tracking import ProjectTrackingAgent
+from tejodaya.agents.expanded_agents import MediaAgent, SocialMediaAgent, SecurityAgent
+from tejodaya.agents.engineering import EngineeringAgent
+from tejodaya.agents.learning import LearningAgent
+from tejodaya.agents.hardware_agent import HardwareAgent
+from tejodaya.agents.software_agent import SoftwareAgent
+from tejodaya.agents.java_bridge import JavaAgentBridge
+from tejodaya.agents.life_management import LifeManagementAgent
+from tejodaya.agents.health import HealthAgent
+from tejodaya.agents.discipline import DisciplineAgent
+from tejodaya.agents.coach import CoachAgent
+from tejodaya.core.memory import TejodayaMemory
 import os
 
 app = Flask(__name__)
 CORS(app)
 
 # Security: In a real app, use environment variables.
-API_TOKEN = "jarvis_secure_token_2026"
+API_TOKEN = "tejodaya_secure_token_2026"
 
-# Initialize Engine and Agents
-engine = JarvisEngine()
+# Initialize Engine, Memory and Agents
+memory = TejodayaMemory()
+engine = TejodayaEngine()
+engine.set_memory(memory)
+
 engine.register_agent("AICreationAgent", AICreationAgent(engine))
 engine.register_agent("AutomationAgent", AutomationAgent(engine))
 engine.register_agent("ResearchAgent", ResearchAgent(engine))
@@ -34,8 +42,12 @@ engine.register_agent("EngineeringAgent", EngineeringAgent(engine))
 engine.register_agent("LearningAgent", LearningAgent(engine))
 engine.register_agent("HardwareAgent", HardwareAgent(engine))
 engine.register_agent("SoftwareAgent", SoftwareAgent(engine))
-engine.register_agent("FreelancingAgent", JavaAgentBridge("FreelancingAgent", engine, "jarvis.agents.FreelancingAgent"))
-engine.register_agent("TradingAgent", JavaAgentBridge("TradingAgent", engine, "jarvis.agents.TradingAgent"))
+engine.register_agent("LifeManagementAgent", LifeManagementAgent(engine))
+engine.register_agent("HealthAgent", HealthAgent(engine))
+engine.register_agent("DisciplineAgent", DisciplineAgent(engine))
+engine.register_agent("CoachAgent", CoachAgent(engine))
+engine.register_agent("FreelancingAgent", JavaAgentBridge("FreelancingAgent", engine, "tejodaya.agents.FreelancingAgent"))
+engine.register_agent("TradingAgent", JavaAgentBridge("TradingAgent", engine, "tejodaya.agents.TradingAgent"))
 
 @app.route('/')
 def index():

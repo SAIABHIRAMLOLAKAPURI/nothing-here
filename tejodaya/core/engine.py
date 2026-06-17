@@ -2,11 +2,11 @@ import logging
 import joblib
 import os
 
-class JarvisEngine:
-    def __init__(self, model_path="jarvis/data/intent_model.pkl"):
+class TejodayaEngine:
+    def __init__(self, model_path="tejodaya/data/intent_model.pkl"):
         self.agents = {}
         self.memory = None
-        self.logger = logging.getLogger("JarvisEngine")
+        self.logger = logging.getLogger("TejodayaEngine")
         logging.basicConfig(level=logging.INFO)
         self.model_path = model_path
         self.model = self._load_model()
@@ -52,6 +52,8 @@ class JarvisEngine:
         elif any(kw in input_lower for kw in ["research", "summarize", "info", "gather", "scrape", "web"]):
             return self.agents.get("ResearchAgent").execute(user_input)
         elif any(kw in input_lower for kw in ["project", "task", "track"]):
+            if any(kw in input_lower for kw in ["add task", "list tasks", "timetable", "schedule"]):
+                return self.agents.get("LifeManagementAgent").execute(user_input)
             return self.agents.get("ProjectTrackingAgent").execute(user_input)
         elif any(kw in input_lower for kw in ["learn", "explain", "study"]):
             return self.agents.get("LearningAgent").execute(user_input)
@@ -69,6 +71,12 @@ class JarvisEngine:
             return self.agents.get("SoftwareAgent").execute(user_input)
         elif any(kw in input_lower for kw in ["system", "shell", "process", "device", "control"]):
             return self.agents.get("SystemControlAgent").execute(user_input)
+        elif any(kw in input_lower for kw in ["diet", "meal", "nutrition", "calorie", "workout", "fitness", "exercise", "water"]):
+            return self.agents.get("HealthAgent").execute(user_input)
+        elif any(kw in input_lower for kw in ["habit", "discipline", "streak", "xp", "level"]):
+            return self.agents.get("DisciplineAgent").execute(user_input)
+        elif any(kw in input_lower for kw in ["coach", "feedback", "recommendation", "review"]):
+            return self.agents.get("CoachAgent").execute(user_input)
         else:
             return "I am not sure which agent should handle this task. Can you please clarify?"
 
